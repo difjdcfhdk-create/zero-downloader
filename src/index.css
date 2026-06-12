@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Cairo:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Cairo", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --color-brand-green: #00d1b2;
+}
+
+/* Base custom styles */
+body {
+  font-family: var(--font-sans);
+  background-color: #0f1115;
+  color: #f3f4f6;
+  overflow-x: hidden;
+  user-select: none;
+}
+
+/* RTL Cairo font override for Arabic mode */
+.rtl-mode {
+  font-family: "Cairo", "Inter", system-ui, sans-serif;
+  direction: rtl;
+}
+
+/* Customize scrollbars for a tight, high-density 1DM feel */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #14171e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4b5563;
+}
+
+/* Android frame container styling */
+.android-device-frame {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: #0d0f12;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Custom animated gradients */
+@keyframes gradientBg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-glow {
+  background: linear-gradient(-45deg, #0e111a, #161c2e, #14213d, #0d0f14);
+  background-size: 400% 400%;
+  animation: gradientBg 15s ease infinite;
+}
+
+/* Soft ripple animations */
+@keyframes ripple {
+  0% { transform: scale(0.95); opacity: 0.5; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+.ripple-effect {
+  position: relative;
+}
+.ripple-effect::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  margin-top: -50px;
+  margin-left: -50px;
+  background: rgba(59, 130, 246, 0.3);
+  border-radius: 50%;
+  animation: ripple 1.5s infinite ease-out;
+  pointer-events: none;
+}
+
+/* Mask overlay to ensure absolute text legibility on gallery background image setup */
+.custom-bg-overlay {
+  position: fixed;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  pointer-events: none;
+  transition: background-image 0.5s ease-in-out;
+}
+
+/* Shimmer animation for loading states */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #181d2a 25%, #2a3449 50%, #181d2a 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
